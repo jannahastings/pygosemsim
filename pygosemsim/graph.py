@@ -62,7 +62,7 @@ def parse_block(lines):
             term["relationship"].append({"type": typedef, "id": goid})
     assert "id" in term, "missing id"
     assert "name" in term, "missing name"
-    assert "namespace" in term, "missing namespace"
+    #assert "namespace" in term, "missing namespace"
     return term
 
 
@@ -116,7 +116,7 @@ def from_obo_lines(lines, ignore_obsolete=True):
         # Add node
         attr = {
             "name": term["name"],
-            "namespace": term["namespace"],
+            "namespace": term["namespace"] if "namespace" in term else "",
             "is_obsolete": obso
         }
         G.add_node(term["id"], **attr)
